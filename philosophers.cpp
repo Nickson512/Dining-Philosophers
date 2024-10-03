@@ -2,6 +2,8 @@
 
 using namespace std;
 
+using namespace std;
+
 class philosopher {
 	private:
 		int hungerMeter = 100;
