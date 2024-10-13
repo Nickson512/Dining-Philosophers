@@ -6,6 +6,26 @@
 
 using namespace std;
 
+class fork {
+    private:
+        mutex usage;
+    public:
+        void useFork (void) {
+            usage.lock();
+            return;
+        }
+        
+        void doneFork (void) {
+            usage.unlock();
+            return;
+        }
+        
+        int isLocked (void) {
+            int x = try_lock(usage);
+            return x;
+        }
+};
+
 class philosopher {
     private:
         const int MAX_HUNGER_METER = 100;
@@ -38,29 +58,9 @@ class philosopher {
         }
         
         void getForks (fork forkOne, fork forkTwo) { //try to acquire 2 adjacent forks to begin eating
-                                                     //TODO: figure out ifndef so compiler doesn't complain about undefined fork
+        	 
         }
         
-};
-
-class fork {
-    private:
-        mutex usage;
-    public:
-        void useFork (void) {
-            usage.lock();
-            return;
-        }
-        
-        void doneFork (void) {
-            usage.unlock();
-            return;
-        }
-        
-        int isLocked (void) {
-            int x = try_lock(usage);
-            return x;
-        }
 };
 
 int main (void) {
